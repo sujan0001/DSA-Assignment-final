@@ -22,6 +22,8 @@ public class BatchfileConvert extends JFrame {
     // Define colors
     private static final Color LIGHT_RED = new Color(255, 204, 204); // Light red background
     private static final Color RED_CONVERT_SECTION = new Color(255, 102, 102); // Red for the conversion section
+    private static final Color BUTTON_BACKGROUND = new Color(169, 77, 77); // Red-grey background for buttons
+    private static final Color BUTTON_TEXT_COLOR = Color.BLACK; // Black text color
 
     public BatchfileConvert() {
         setTitle("Batch File Converter");
@@ -43,27 +45,27 @@ public class BatchfileConvert extends JFrame {
         sidebarPanel.setPreferredSize(new Dimension(300, 0));  // Set a larger preferred size for the sidebar
         sidebarPanel.setBackground(RED_CONVERT_SECTION);  // Set background to red for the conversion section
 
-        // Create buttons and combo box with white font color
+        // Create buttons and combo box with black text color and red-grey background
         Font buttonFont = new Font("Arial", Font.PLAIN, 16);  // Increase font size
 
         selectFilesButton = new JButton("Select Files");
-        selectFilesButton.setBackground(Color.DARK_GRAY);
-        selectFilesButton.setForeground(Color.WHITE);
+        selectFilesButton.setBackground(BUTTON_BACKGROUND);
+        selectFilesButton.setForeground(BUTTON_TEXT_COLOR);
         selectFilesButton.setFont(buttonFont);
 
         conversionTypeComboBox = new JComboBox<>(new String[]{"PDF to Docx", "Image Resize"});
-        conversionTypeComboBox.setBackground(Color.DARK_GRAY);
-        conversionTypeComboBox.setForeground(Color.WHITE);
+        conversionTypeComboBox.setBackground(BUTTON_BACKGROUND);
+        conversionTypeComboBox.setForeground(BUTTON_TEXT_COLOR);
         conversionTypeComboBox.setFont(buttonFont);
 
         startButton = new JButton("Start Conversion");
-        startButton.setBackground(Color.DARK_GRAY);
-        startButton.setForeground(Color.WHITE);
+        startButton.setBackground(BUTTON_BACKGROUND);
+        startButton.setForeground(BUTTON_TEXT_COLOR);
         startButton.setFont(buttonFont);
 
         cancelButton = new JButton("Cancel");
-        cancelButton.setBackground(Color.DARK_GRAY);
-        cancelButton.setForeground(Color.WHITE);
+        cancelButton.setBackground(BUTTON_BACKGROUND);
+        cancelButton.setForeground(BUTTON_TEXT_COLOR);
         cancelButton.setFont(buttonFont);
 
         // Add buttons and combo box to sidebar
@@ -92,7 +94,7 @@ public class BatchfileConvert extends JFrame {
         statusTextArea.setFont(buttonFont);
         JScrollPane statusScrollPane = new JScrollPane(statusTextArea);
 
-        // Table to track individual file progress with light red background and white font
+        // Table to track individual file progress with light red background and black font
         String[] columnNames = {"File Name", "Progress", "Status"};
         Object[][] data = {};
         fileProgressTable = new JTable(new ProgressTableModel(data, columnNames)) {
@@ -241,7 +243,6 @@ public class BatchfileConvert extends JFrame {
         SwingUtilities.invokeLater(() -> new BatchfileConvert().setVisible(true));
     }
 
-    // Custom TableModel for file progress
     private static class ProgressTableModel extends DefaultTableModel {
         public ProgressTableModel(Object[][] data, String[] columnNames) {
             super(data, columnNames);
@@ -249,7 +250,7 @@ public class BatchfileConvert extends JFrame {
 
         @Override
         public boolean isCellEditable(int row, int column) {
-            return false; // Make table cells non-editable
+            return false;
         }
     }
 }
